@@ -16,5 +16,7 @@ router.post('/', checkToken, projectController.createProject);
 
 // [GET] 팀모 내용 조회
 router.get('/:id', checkToken, projectController.readProjectContent);
+// [GET] 팀모 목록 조회, 팀모 검색, 팀모 필터
+router.get('/', checkToken, projectController.readProject);
 
 module.exports = router;

@@ -64,6 +64,19 @@ module.exports = {
             return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROJECT_CONTENT_READ_FAIL));
         }
     },
+    readProject: async (req, res) => {
+        const { title, type, field, position, largeAddress, smallAddress, limitUniv,
+            morning, night, dawn, plan, cramming, leader, follower, challenge, realistic } = req.query;
+        try { 
+            const result = await projectService.readProject(
+                req.decoded, title, type, field, position, largeAddress, smallAddress, limitUniv,
+                morning, night, dawn, plan, cramming, leader, follower, challenge, realistic);
+            return res.status(sc.OK).send(rb.successData(sc.OK, rm.PROJECT_READ_SUCCESS, result));
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROJECT_READ_FAIL));
+        }
+    },
     applyProject: async (req, res) => {
         const { MemberId, ProjectId } = req.body;
         if(!MemberId || !ProjectId) {

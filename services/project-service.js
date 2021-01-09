@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Project, ProjectPosition, ProjectMember, ProjectApplicant, User } = require('../models');
 
 module.exports = {
@@ -88,6 +89,151 @@ module.exports = {
         } catch (error) {
             console.error(error);
             throw error;
+        }
+    },
+    readProject: async (UserId, title, type, field, position, largeAddress, smallAddress, limitUniv,
+        morning, night, dawn, plan, cramming, leader, follower, challenge, realistic) => {
+        try {
+            let whereOption = {};
+            let andOption = [];
+            let includeWhereOption = {};
+            let includeAndOption = []; 
+            let orOption1 = [];
+            let orOption2 = [];
+            let orOption3 = [];
+            let orOption4 = [];
+            if(!title) { 
+                if(!type && !field && !position && !largeAddress && !smallAddress && !limitUniv &&
+                    !morning && !night && !dawn && !plan && !cramming && !leader && !follower && !challenge && !realistic) {
+                    console.log('타이틀 없음 && 쿼리 없음'); // 타이틀 없음 && 쿼리 없음 => 목록 조회 (공개된 목록만!)
+                    whereOption = { 
+                        open: true
+                    };
+                } else {
+                    console.log('타이틀 없음 && 쿼리 있음'); // 타이틀 없음 && 쿼리 있음 => 필터 적용 (공개된 목록만!)
+                    // limitUniv는 true(전체), false(자대)로 전달
+                    if(limitUniv) { 
+                        if(!JSON.parse(limitUniv)){ //false일 경우
+                            const user = await User.findByPk(UserId);
+                            const { univ } = user;
+                            limitUniv = univ;
+                            console.log(limitUniv);
+                        } else { //true일 경우
+                            limitUniv = null;
+                        }
+                    }
+                    // Or 옵션 추가
+                    morning ? orOption1.push({ morning: JSON.parse(morning) }) : null;
+                    night ? orOption1.push({ night: JSON.parse(night) }) : null;
+                    dawn ? orOption1.push({ dawn: JSON.parse(dawn) }) : null;
+                    plan ? orOption2.push({ plan: JSON.parse(plan) }) : null;
+                    cramming ? orOption2.push({ cramming: JSON.parse(cramming) }) : null; 
+                    leader ? orOption3.push({ leader: JSON.parse(leader) }) : null;
+                    follower ? orOption3.push({ follower: JSON.parse(follower) }) : null; 
+                    challenge ? orOption4.push({ challenge: JSON.parse(challenge) }) : null; 
+                    realistic ? orOption4.push({ realistic: JSON.parse(realistic) }) : null;
+
+                    // And 옵션 추가
+                    type ? andOption.push({ type }) : null;
+                    field ? andOption.push({ field }) : null;
+                    largeAddress ? andOption.push({ largeAddress}) : null;
+                    smallAddress ? andOption.push({ smallAddress }) : null;
+                    limitUniv ? andOption.push({ limitUniv }) : null;
+                    orOption1.length > 0 ? andOption.push({ [Op.or]: orOption1 }) : null;
+                    orOption2.length > 0 ? andOption.push({ [Op.or]: orOption2}) : null;
+                    orOption3.length > 0 ? andOption.push({ [Op.or]: orOption3}) : null;
+                    orOption4.length > 0 ? andOption.push({ [Op.or]: orOption4}) : null;
+                    whereOption = {
+                        open: true,
+                        [Op.and]: andOption
+                    }
+
+                    // Include And 옵션 추가
+                    position ? includeAndOption.push({ position }) : null;
+                    includeWhereOption = {
+                        [Op.and]: includeAndOption
+                    }
+                }
+            } else {
+                if(!type && !field && !position && !largeAddress && !smallAddress && !limitUniv &&
+                    !morning && !night && !dawn && !plan && !cramming && !leader && !follower && !challenge && !realistic) {
+                    console.log('타이틀 있음 && 쿼리 없음'); // 타이틀 있음 && 쿼리 없음 => 검색 적용 (공개된 목록만!)
+                    whereOption = { 
+                        title: {
+                            [Op.substring]: `${title}`
+                        },
+                        open: true
+                    }
+                } else {
+                    console.log('타이틀 있음 && 쿼리 있음'); // 타이틀 있음 && 쿼리 있음 => 검색 + 필터 적용 (공개된 목록만!)
+                    // limitUniv는 true(전체), false(자대)로 전달
+                    if(limitUniv) { 
+                        if(!JSON.parse(limitUniv)){ //false일 경우
+                            const user = await User.findByPk(UserId);
+                            const { univ } = user;
+                            limitUniv = univ;
+                            console.log(limitUniv);
+                        } else { //true일 경우
+                            limitUniv = null;
+                        }
+                    }
+                    // Or 옵션 추가
+                    morning ? orOption1.push({ morning: JSON.parse(morning) }) : null;
+                    night ? orOption1.push({ night: JSON.parse(night) }) : null;
+                    dawn ? orOption1.push({ dawn: JSON.parse(dawn) }) : null;
+                    plan ? orOption2.push({ plan: JSON.parse(plan) }) : null;
+                    cramming ? orOption2.push({ cramming: JSON.parse(cramming) }) : null; 
+                    leader ? orOption3.push({ leader: JSON.parse(leader) }) : null;
+                    follower ? orOption3.push({ follower: JSON.parse(follower) }) : null; 
+                    challenge ? orOption4.push({ challenge: JSON.parse(challenge) }) : null; 
+                    realistic ? orOption4.push({ realistic: JSON.parse(realistic) }) : null;
+
+                    // And 옵션 추가
+                    type ? andOption.push({ type }) : null;
+                    field ? andOption.push({ field }) : null;
+                    largeAddress ? andOption.push({ largeAddress}) : null;
+                    smallAddress ? andOption.push({ smallAddress }) : null;
+                    limitUniv ? andOption.push({ limitUniv }) : null;
+                    orOption1.length > 0 ? andOption.push({ [Op.or]: orOption1 }) : null;
+                    orOption2.length > 0 ? andOption.push({ [Op.or]: orOption2}) : null;
+                    orOption3.length > 0 ? andOption.push({ [Op.or]: orOption3}) : null;
+                    orOption4.length > 0 ? andOption.push({ [Op.or]: orOption4}) : null;
+                    whereOption = { 
+                        title: {
+                            [Op.substring]: `${title}`
+                        },
+                        open: true,
+                        [Op.and]: andOption
+                    }
+
+                    // Include And 옵션 추가
+                    position ? includeAndOption.push({ position }) : null;
+                    includeWhereOption = {
+                        [Op.and]: includeAndOption
+                    }
+                }
+            }
+            const result = await Project.findAll({
+                include: [ //inner join => position은 
+                    {
+                        model: ProjectPosition,
+                        attributes: ['position', 'headCount'],
+                        where: includeWhereOption
+                    }
+                ],
+                attributes: [
+                    'id', 'limitUniv', 'largeAddress', 'smallAddress', 
+                    'startDate', 'endDate', 'title', 'type', 'field'
+                ],
+                order: [
+                    ['createdAt', 'DESC'] //최신순 정렬
+                ],
+                where: whereOption
+            });
+            return result;
+        } catch (error) {
+            console.error(error);
+            throw e;
         }
     },
     applyProject: async (UserId, MemberId, ProjectId) => {
