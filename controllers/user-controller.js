@@ -87,6 +87,25 @@ module.exports = {
             return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROFILE_UPDATE_FAIL));
         }
     },
+    readMypage: async (req, res) => {
+        try {
+            let result = await userService.readMypage(req.decoded);
+            const { Users, ProjectApplicants, Projects, Members } = result;
+            result = {
+                status: sc.OK,
+                success: true,
+                message: rm.MYPAGE_READ_SUCCESS,
+                Users,
+                ProjectApplicants,
+                Projects,
+                Members
+            }
+            return res.status(sc.OK).send(result);
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.MYPAGE_READ_FAIL));
+        }
+    },
     findEmail: async (req, res) => {
         try {
             const result = await userService.findEmail(req.params.email);

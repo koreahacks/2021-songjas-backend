@@ -13,6 +13,8 @@ router.post('/signin', userController.signin);
 router.get('/members', checkToken, userController.readMyMember);
 // [GET] 팀모 선택 목록 조회 (내 팀모)
 router.get('/projects', checkToken, userController.readMyProject);
+// [GET] 마이페이지 조회 
+router.get('/mypage', checkToken, userController.readMypage);
 
 // [GET] 사용자(팀원) 검색
 router.get('/:email', checkToken, userController.findEmail);

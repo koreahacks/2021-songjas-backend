@@ -60,6 +60,78 @@ module.exports = {
             throw error;
         }
     },
+    readMypage: async (id) => {
+        try {
+            const whereOption = { UserId: id };
+            const orderOption = [
+                ['createdAt', 'DESC'] //최신순 정렬
+            ];
+            const attributesOption = [
+                'id', 'limitUniv', 'largeAddress', 'smallAddress', 'startDate', 'endDate', 'title', 'type', 'field'
+            ];
+            
+            const user = await User.findByPk(id);
+            const { img, name, largeAddress, smallAddress } = user;
+
+            const projectApplicant = await Project.findAll({
+                include: [
+                    {
+                        model: ProjectPosition,
+                        attributes: ['position', 'headCount']
+                    },
+                    {
+                        model: ProjectApplicant,
+                        attributes: [ ],
+                        where: whereOption
+                    }
+                ],
+                attributes: attributesOption,
+                order: orderOption
+            });
+            const project = await Project.findAll({
+                include: [
+                    {
+                        model: ProjectPosition,
+                        attributes: ['position', 'headCount']
+                    }
+                ],
+                where: whereOption,
+                attributes: attributesOption,
+                order: orderOption
+            });
+            const member = await Member.findAll({
+                include: [
+                    { 
+                        model: MemberPosition,
+                        attributes: ['position']
+                    }
+                ],
+                where: whereOption,
+                attributes: ['id', 'title', 'type', 'field'],
+                order: orderOption
+            })
+
+            // 응답 결과
+            const result = {
+                Users: {
+                    img,
+                    name, 
+                    largeAddress, 
+                    smallAddress,
+                    projectApplicantCount: projectApplicant.length,
+                    projectCount: project.length,
+                    memberCount: member.length
+                },
+                ProjectApplicants: projectApplicant,
+                Projects: project,
+                Members: member
+            }
+            return result;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    },
     findEmail: async (email) => {
         try {
             const result = User.findOne({
