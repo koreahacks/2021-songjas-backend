@@ -1,4 +1,4 @@
-// 주석 지우고 모델 선언 추가
+const { Auth } = require('../auth');
 
 module.exports = {
 
