@@ -96,4 +96,22 @@ module.exports = {
             return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.EMAIL_FIND_FAIL));
         }
     },
+    readMyMember: async (req, res) => {
+        try {
+            const result = await userService.readMyMember(req.decoded);
+            return res.status(sc.OK).send(rb.successData(sc.OK, rm.MY_MEMBER_READ_SUCCESS, result));
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.MY_MEMBER_READ_FAIL));
+        }
+    },
+    readMyProject: async (req, res) => {
+        try {
+            const result = await userService.readMyProject(req.decoded);
+            return res.status(sc.OK).send(rb.successData(sc.OK, rm.MY_PROJECT_READ_SUCCESS, result));
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.MY_PROJECT_READ_FAIL));   
+        }
+    }
 }

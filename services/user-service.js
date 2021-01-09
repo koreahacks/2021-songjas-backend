@@ -74,4 +74,32 @@ module.exports = {
             throw error;
         }
     },
+    readMyMember: async (id) => {
+        try {
+            const result = await Member.findAll({
+                where: {
+                    UserId: id
+                },
+                attributes: ['id', 'title', 'UserId']
+            })
+            return result;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    },
+    readMyProject: async (id) => {
+        try {
+            const result = await Project.findAll({
+                where: {
+                    UserId: id
+                },
+                attributes: ['id', 'title', 'room', 'UserId']
+            })
+            return result;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
 }
