@@ -2,7 +2,6 @@ const memberService = require('../services/member-service');
 const rb = require('../modules/response-body');
 const rm = require('../modules/response-message');
 const sc = require('../modules/status-code');
-const projectService = require('../services/project-service');
 
 module.exports = {
     createMember: async (req, res) => {
@@ -20,6 +19,22 @@ module.exports = {
         } catch (error) {
             console.error(error);
             return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.MEMBER_CREATE_FAIL));
+        }
+    },
+    readMember: async (req, res) => {
+        const { title, type, field, position, largeAddress, smallAddress, limitUniv,
+                    morning, night, dawn, plan, cramming, leader, follower, challenge, realistic } = req.query;
+        //목록 조회, 검색, 필터 포함 응답 메시지
+        try {
+            const result = await memberService.readMember(
+                req.decoded, title, type, field, position, largeAddress, smallAddress, limitUniv,
+                morning, night, dawn, plan, cramming, leader, follower, challenge, realistic 
+            );
+            return res.status(sc.OK).send(rb.successData(sc.OK, rm.MEMBER_LIST_READ_SUCCESS, result));
+                                
+        } catch (error) {
+            console.error(error);
+                return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.MEMBER_LIST_READ_FAIL));
         }
     },
     readMemberContent: async (req, res) => {
