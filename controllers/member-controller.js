@@ -22,4 +22,24 @@ module.exports = {
             return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.MEMBER_CREATE_FAIL));
         }
     },
+    readMemberContent: async (req, res) => {
+        try {
+            let result = await memberService.readMemberContent(req.params.id, req.decoded);
+            const { Users, Members, MemberPositions, MemberActivities } = result;
+            result = {
+                status: sc.OK,
+                success: true,
+                message: rm.MEMBER_CONTENT_READ_SUCCESS,
+                Users,
+                Members,
+                MemberPositions,
+                MemberActivities
+            }
+            return res.status(sc.OK).send(result);
+                        
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.MEMBER_CONTENT_READ_FAIL));
+        }
+    },
 }
