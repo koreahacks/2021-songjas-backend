@@ -32,4 +32,32 @@ module.exports = {
             throw e;
         }
     },
+    readProfile: async (id) => { 
+        try {
+            const result = await User.findOne({
+                where: {
+                    id
+                },
+                attributes: { exclude: ['id', 'pwd'] } 
+            });
+            return result;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    },
+    updateProfile: async (id, user) => {
+        try {
+            const result = await User.update(user,
+            {
+                where: {
+                    id
+                }
+            });
+            return result;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    },
 }

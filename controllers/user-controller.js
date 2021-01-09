@@ -41,4 +41,50 @@ module.exports = {
             return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.SIGNIN_FAIL));
         }
     },
+    readProfile: async (req, res) => {
+        try {
+            const result = await userService.readProfile(req.decoded);
+            if(!result) { // 탈퇴했을 경우
+                return res.status(sc.NO_CONTENT).send();
+            }
+            return res.status(sc.OK).send(rb.successData(sc.OK, rm.PROFILE_READ_SUCCESS, result));
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROFILE_READ_FAIL));
+        }
+    },
+    uploadProfileImage: async (req, res) => {
+        if(!req.file) {
+            return res.status(sc.BAD_REQUEST).send(rb.fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+        }
+        try {
+            console.log(req.file);
+            const result = { img: req.file.location };
+            return res.status(sc.CREATED).send(rb.successData(sc.CREATED, rm.PROJECT_IMAGE_UPLOAD_SUCCESS, result));
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROFILE_IMAGE_UPLOAD_FAIL));
+        }
+    },
+    updateProfile: async (req, res) => {
+        const { 
+            img, largeAddress, smallAddress, univ, major, grade,
+            morning, night, dawn, plan, cramming, leader, follower, challenge, realistic
+        } = req.body;
+        if(img === undefined || !largeAddress || !smallAddress || !univ || !major || !grade ||
+            morning === undefined || night === undefined || dawn === undefined || 
+            plan === undefined || cramming === undefined || leader === undefined || 
+            follower === undefined || challenge === undefined || realistic === undefined) {
+            console.log(req.body);
+            return res.status(sc.BAD_REQUEST).send(rb.fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+        }
+        try {
+            console.log(req.body);
+            await userService.updateProfile(req.decoded, req.body);
+            return res.status(sc.CREATED).send(rb.success(sc.CREATED, rm.PROFILE_UPDATE_SUCCESS));
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROFILE_UPDATE_FAIL));
+        }
+    },
 }
