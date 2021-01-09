@@ -44,4 +44,30 @@ module.exports = {
             return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROJECT_CREATE_FAIL));
         }
     },
+    applyProject: async (req, res) => {
+        const { MemberId, ProjectId } = req.body;
+        if(!MemberId || !ProjectId) {
+            return res.status(sc.BAD_REQUEST).send(rb.fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+        }
+        try {
+            await projectService.applyProject(req.decoded, MemberId, ProjectId);
+            return res.status(sc.CREATED).send(rb.success(sc.CREATED, rm.PROJECT_APPLY_SUCCESS));
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROJECT_APPLY_FAIL));
+        }
+    },
+    memberProject: async (req, res) => {
+        const { MemberId, ProjectId } = req.body;
+        if(!MemberId || !ProjectId) {
+            return res.status(sc.BAD_REQUEST).send(rb.fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+        }
+        try {
+            await projectService.memberProject(req.decoded, MemberId, ProjectId);
+            return res.status(sc.CREATED).send(rb.success(sc.CREATED, rm.PROJECT_MEMBER_SUCCESS));
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROJECT_MEMBER_FAIL));
+        }
+    },
 }

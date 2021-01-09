@@ -1,4 +1,4 @@
-const { Project, ProjectPosition, ProjectMember, User } = require('../models');
+const { Project, ProjectPosition, ProjectMember, ProjectApplicant, User } = require('../models');
 
 module.exports = {
     createProject: async (project) => {
@@ -17,4 +17,31 @@ module.exports = {
             ]
         });
     },
+    applyProject: async (UserId, MemberId, ProjectId) => {
+        try {
+            await ProjectApplicant.create({
+                UserId,
+                MemberId,
+                ProjectId
+            });
+        } catch (error) {
+            console.error(error);
+            throw e; 
+        }
+    },
+    memberProject: async (UserId, MemberId, ProjectId) => {
+        try {
+            await ProjectMember.update({
+                MemberId},
+            {
+                where: {
+                    UserId,
+                    ProjectId
+                }
+            });
+        } catch (error) {
+            console.error(error);
+            throw e;
+        }
+    }
 }
