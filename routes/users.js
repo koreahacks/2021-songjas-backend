@@ -9,6 +9,9 @@ router.post('/signup', userController.signup);
 // [POST] 로그인 
 router.post('/signin', userController.signin);
 
+// [GET] 사용자(팀원) 검색
+router.get('/:email', checkToken, userController.findEmail);
+
 // [GET] 프로필 조회
 router.get('/', checkToken, userController.readProfile);
 // [POST] 프로필 이미지 등록

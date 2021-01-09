@@ -60,4 +60,18 @@ module.exports = {
             throw error;
         }
     },
+    findEmail: async (email) => {
+        try {
+            const result = User.findOne({
+                where: {
+                    email
+                },
+                attributes: ['id', 'email', 'name', 'img']
+            });
+            return result;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    },
 }

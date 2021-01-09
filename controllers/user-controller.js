@@ -87,4 +87,13 @@ module.exports = {
             return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROFILE_UPDATE_FAIL));
         }
     },
+    findEmail: async (req, res) => {
+        try {
+            const result = await userService.findEmail(req.params.email);
+            return res.status(sc.OK).send(rb.successData(sc.OK, rm.EMAIL_FIND_SUCCESS, result));
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.EMAIL_FIND_FAIL));
+        }
+    },
 }
