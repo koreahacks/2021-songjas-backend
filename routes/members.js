@@ -6,4 +6,7 @@ const memberController = require('../controllers/member-controller');
 // [POST] 팀글 생성
 router.post('/', checkToken, memberController.createMember);
 
+//[GET] 팀글 내용 조회
+router.get('/:id', checkToken, memberController.readMemberContent);
+
 module.exports = router;
