@@ -44,6 +44,26 @@ module.exports = {
             return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROJECT_CREATE_FAIL));
         }
     },
+    readProjectContent: async (req, res) => {
+        try {
+            let result = await projectService.readProjectContent(req.params.id, req.decoded);
+            const { Projects, ProjectPositions, ProjectMembers, ProjectApplicant, button } = result;
+            result = {
+                status: sc.OK,
+                success: true,
+                message: rm.PROJECT_CONTENT_READ_SUCCESS,
+                Projects,
+                ProjectPositions,
+                ProjectMembers,
+                ProjectApplicant,
+                button
+            }
+            return res.status(sc.OK).send(result);
+        } catch (error) {
+            console.error(error);
+            return res.status(sc.INTERNAL_SERVER_ERROR).send(rb.fail(sc.INTERNAL_SERVER_ERROR, rm.PROJECT_CONTENT_READ_FAIL));
+        }
+    },
     applyProject: async (req, res) => {
         const { MemberId, ProjectId } = req.body;
         if(!MemberId || !ProjectId) {

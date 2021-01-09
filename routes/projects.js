@@ -14,4 +14,7 @@ router.post('/images', checkToken, upload.single('img'), projectController.uploa
 // [POST] 팀모(모집글) 등록
 router.post('/', checkToken, projectController.createProject);
 
+// [GET] 팀모 내용 조회
+router.get('/:id', checkToken, projectController.readProjectContent);
+
 module.exports = router;
