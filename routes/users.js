@@ -12,7 +12,7 @@ router.post('/signin', userController.signin);
 // [GET] 프로필 조회
 router.get('/', checkToken, userController.readProfile);
 // [POST] 프로필 이미지 등록
-router.post('/images', upload.single('img'), checkToken, userController.uploadProfileImage);
+router.post('/images', checkToken, upload.single('img'), userController.uploadProfileImage);
 // [PATCH] 프로필 수정
 router.patch('/', checkToken, userController.updateProfile);
 
