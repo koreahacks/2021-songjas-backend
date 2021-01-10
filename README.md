@@ -76,7 +76,7 @@
 
 - git commit message
 
-![timmo_title](https://user-images.githubusercontent.com/54926663/104111652-e3772b80-5327-11eb-8cb3-8050b755cdf3.png)
+![commit msg](https://user-images.githubusercontent.com/54926663/104111682-55e80b80-5328-11eb-90e9-8528e383dc31.png)
 
   - [Visual Studio Code Commitizen Support 활용](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
 
