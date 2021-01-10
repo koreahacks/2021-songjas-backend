@@ -129,7 +129,7 @@
 
 ## Server Architectuer
 
-![System Architecture](https://user-images.githubusercontent.com/54926663/104111484-8b3f2a00-5325-11eb-959b-d15f7e74bdc7.JPG)
+![시스템 구조도](https://user-images.githubusercontent.com/54926663/104111514-f5f06580-5325-11eb-85ed-c9839477cfe2.png)
 
 <br>
 
