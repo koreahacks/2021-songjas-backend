@@ -3,6 +3,8 @@
 
 ## 2021 Korea Hacks 고카톤
 
+![timmo_title](https://user-images.githubusercontent.com/54926663/104111553-90e93f80-5326-11eb-9118-a42f4874be72.png)
+
 - 프로젝트 기간: 2020.01.09 ~ 2020.01.10
 - [프로젝트 발표 자료](https://drive.google.com/file/d/1GlH8ZLYTxTZygCWB-f1G6wEP0iegCgmp/view?usp=sharing)
 
