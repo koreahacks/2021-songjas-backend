@@ -9,16 +9,16 @@
 - [프로젝트 발표 자료](https://drive.google.com/file/d/1GlH8ZLYTxTZygCWB-f1G6wEP0iegCgmp/view?usp=sharing)
 
 <br>
-
-##🤩 [TIMMO Notion](https://www.notion.so/tnsy/f75a5d26ba13465494153144a3ca8005)
-
-<br>
-
-##😂 [REST API DOCS](https://www.notion.so/REST-API-c3a1c22d8f9b47c08800bf10129fd816)
+ 
+## 🤩 [TIMMO Notion](https://www.notion.so/tnsy/f75a5d26ba13465494153144a3ca8005)
 
 <br>
 
-😊 ## Project
+## 😂 [REST API DOCS](https://www.notion.so/REST-API-c3a1c22d8f9b47c08800bf10129fd816)
+
+<br>
+
+##😊 Project
 
 프로 팀플러들의 스토리브 리그, 팀모입니다.
 
@@ -26,7 +26,7 @@
 
 <br>
 
-🤔 ## Function
+## 🤔 Function
 
 - 팀모 (팀원 모집)
 - 팀글 (팀원 찾기)
@@ -34,7 +34,7 @@
 
 <br>
 
-😱 ## Code Convention
+## 😱 Code Convention
 
 - 변수와 함수명은 `camelCase`
 
@@ -76,6 +76,8 @@
 
 - git commit message
 
+![timmo_title](https://user-images.githubusercontent.com/54926663/104111652-e3772b80-5327-11eb-8cb3-8050b755cdf3.png)
+
   - [Visual Studio Code Commitizen Support 활용](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
 
   ```
@@ -86,7 +88,7 @@
 
 <br>
 
-😤 ## Dependency Module
+## 😤 Dependency Module
 
 사용 패키지 모듈은 다음과 같습니다.
 
@@ -129,19 +131,19 @@
 
 <br>
 
-😲 ## Server Architectuer
+## 😲 Server Architectuer
 
 ![시스템 구조도](https://user-images.githubusercontent.com/54926663/104111514-f5f06580-5325-11eb-85ed-c9839477cfe2.png)
 
 <br>
 
-😬 ## ERD Diagram
+## 😬 ERD Diagram
 
 ![DB 설계](https://user-images.githubusercontent.com/54926663/104111377-6f875400-5324-11eb-9d3e-b5f870a99ad0.png)
 
 <br>
 
-🥱 ## Develop Framework & Environment
+## 🥱 Develop Framework & Environment
 
 - Node.js
 - Express.js
@@ -155,7 +157,7 @@
 
 <br>
 
-😎 ## Team Role
+## 😎 Team Role
 
 ##### 💙박윤경
 
