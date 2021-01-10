@@ -129,7 +129,7 @@
 
 ## Server Architectuer
 
-이미지 삽입
+![System Architecture](https://user-images.githubusercontent.com/54926663/104111484-8b3f2a00-5325-11eb-959b-d15f7e74bdc7.JPG)
 
 <br>
 
