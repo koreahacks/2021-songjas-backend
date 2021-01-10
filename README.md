@@ -132,6 +132,7 @@
 이미지 삽입
 
 <br>
+![DB 설계](https://user-images.githubusercontent.com/54926663/104111377-6f875400-5324-11eb-9d3e-b5f870a99ad0.png)
 
 ## ERD Diagram
 
