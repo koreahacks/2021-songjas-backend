@@ -6,15 +6,15 @@
 - 프로젝트 기간: 2020.01.09 ~ 2020.01.10
 - [프로젝트 발표 자료](https://drive.google.com/file/d/1GlH8ZLYTxTZygCWB-f1G6wEP0iegCgmp/view?usp=sharing)
 
-
+<br>
 
 ## [TIMMO Notion](https://www.notion.so/tnsy/f75a5d26ba13465494153144a3ca8005)
 
-
+<br>
 
 ## [REST API DOCS](https://www.notion.so/REST-API-c3a1c22d8f9b47c08800bf10129fd816)
 
-
+<br>
 
 ## Project
 
@@ -22,7 +22,7 @@
 
 팀모는 언택트 시대의 대학생들을 위한 팀 빌딩 + 팀 협업 서비스로, 팀으로 진행하는 활동에서 팀원을 찾기 어려워 고민하는 대학생들을 위해 만들어졌습니다. 팀모의 팀원 모집/찾기를 통해 나와 딱 맞는 팀원을 찾아보세요! 그리고 협업을 시작하세요!
 
-
+<br>
 
 ## Function
 
@@ -30,7 +30,7 @@
 - 팀글 (팀원 찾기)
 - 마이페이지
 
-
+<br>
 
 ## Code Convention
 
@@ -82,7 +82,7 @@
   => 기능(상위 라우터): [메소드] 세부 내용
   ```
 
-
+<br>
 
 ## Dependency Module
 
@@ -125,19 +125,19 @@
 }
 ```
 
-
+<br>
 
 ## Server Architectuer
 
 이미지 삽입
 
-
+<br>
 
 ## ERD Diagram
 
 이미지 삽입
 
-
+<br>
 
 ## Develop Framework & Environment
 
@@ -151,7 +151,7 @@
 - Naver Cloude Platform Server - mysql(5.7)-centos-7.2-64
 - Naver Cloude Platform Storage Object
 
-
+<br>
 
 ## Team Role
 
@@ -169,3 +169,5 @@
 - Node.js + Expesee.js + MySQL 개발 환경 구성 (기본 모듈 구성 및 구조 설계)
 - Multer와 Naver Cloude Platform의 Object Storage로 이미지 업로드 구현
 - REST API 설계 및 구현 [REST API 문서](https://www.notion.so/REST-API-c3a1c22d8f9b47c08800bf10129fd816)
+
+<br>
