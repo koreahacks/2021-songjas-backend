@@ -18,11 +18,13 @@
 
 <br>
 
-##😊 Project
+## 😊 Project
 
 프로 팀플러들의 스토리브 리그, 팀모입니다.
 
-팀모는 언택트 시대의 대학생들을 위한 팀 빌딩 + 팀 협업 서비스로, 팀으로 진행하는 활동에서 팀원을 찾기 어려워 고민하는 대학생들을 위해 만들어졌습니다. 팀모의 팀원 모집/찾기를 통해 나와 딱 맞는 팀원을 찾아보세요! 그리고 협업을 시작하세요!
+팀모는 언택트 시대의 대학생들을 위한 팀 빌딩 + 팀 협업 서비스로, 팀으로 진행하는 활동에서 
+<br>팀원을 찾기 어려워 고민하는 대학생들을 위해 만들어졌습니다. 
+<br>팀모의 팀원 모집/찾기를 통해 나와 딱 맞는 팀원을 찾아보세요! 그리고 협업을 시작하세요!
 
 <br>
 
@@ -74,11 +76,10 @@
   |---yg
   ```
 
-- git commit message
+- git commit message [(Visual Studio Code Commitizen Support 활용)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
 
 ![commit msg](https://user-images.githubusercontent.com/54926663/104111682-55e80b80-5328-11eb-90e9-8528e383dc31.png)
 
-  - [Visual Studio Code Commitizen Support 활용](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
 
   ```
   ex) feat(users): [POST] signin 
@@ -131,7 +132,7 @@
 
 <br>
 
-## 😲 Server Architectuer
+## 😲 Architectuer
 
 ![시스템 구조도](https://user-images.githubusercontent.com/54926663/104111514-f5f06580-5325-11eb-85ed-c9839477cfe2.png)
 
